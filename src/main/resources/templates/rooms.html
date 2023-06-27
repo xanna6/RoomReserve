@@ -18,8 +18,9 @@
             <th>Id</th>
             <th>Number of people</th>
             <th>Single beds</th>
-            <th>Double beds</th>
+            <th>Double beds </th>
             <th>Price</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -29,6 +30,9 @@
             <td th:text="${room.singleBed}"></td>
             <td th:text="${room.doubleBed}"></td>
             <td th:text="${room.price}"></td>
+            <td>
+                <a th:href="@{/rooms/edit/{id}(id=${room.id})}">edit</a>
+            </td>
         </tr>
         </tbody>
     </table>

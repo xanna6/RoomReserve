@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RoomController {
@@ -17,7 +19,12 @@ public class RoomController {
 
     @GetMapping("/rooms")
     public String getRooms(Model model) {
-        model.addAttribute("roomList",this.roomService.getAllRooms());
+        model.addAttribute("roomList", this.roomService.getAllRooms());
         return "rooms";
+    }
+
+    @GetMapping("/rooms/edit/{id}")
+    public String editRoom(Model model, @PathVariable int roomId) {
+        return "editRoom";
     }
 }

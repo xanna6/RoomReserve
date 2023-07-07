@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RoomController {
@@ -24,7 +23,9 @@ public class RoomController {
     }
 
     @GetMapping("/rooms/edit/{id}")
-    public String editRoom(Model model, @PathVariable int roomId) {
+    public String editRoom(Model model, @PathVariable String id) {
+        Long roomId = Long.valueOf(id);
+        model.addAttribute("room",this.roomService.getRoomById(roomId));
         return "editRoom";
     }
 }

@@ -12,12 +12,13 @@
 
   <h3>Edit room</h3>
 
-  Id: <input type="text" th:field="${room.id}" /><br/>
+  <form method="post" th:object="${room}">
   Number of people: <input type="text" th:field="${room.people}" /><br/>
   Single beds: <input type="text" th:field="${room.singleBed}" /><br/>
   Double beds: <input type="text" th:field="${room.doubleBed}" /><br/>
   Price: <input type="text" th:field="${room.price}" /><br/>
   <input type="submit" value="Save" />
+  </form>
 
 </div>
 </body>

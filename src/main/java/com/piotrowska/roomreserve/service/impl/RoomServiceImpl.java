@@ -21,4 +21,15 @@ public class RoomServiceImpl implements RoomService {
     public List<Room> getAllRooms() {
         return this.roomRepository.findAll();
     }
+
+    @Override
+    public Room getRoomById(Long id) {
+        return this.roomRepository.getReferenceById(id);
+    }
+
+    @Override
+    public void editRoom(Room room) {
+        this.roomRepository.save(room);
+    }
+
 }

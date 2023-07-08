@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>editRoom</title>
+  <link rel="stylesheet"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2" align="center">
+
+  <h3>Edit room</h3>
+
+  <form method="post" th:object="${room}">
+  Number of people: <input type="text" th:field="${room.people}" /><br/>
+  Single beds: <input type="text" th:field="${room.singleBed}" /><br/>
+  Double beds: <input type="text" th:field="${room.doubleBed}" /><br/>
+  Price: <input type="text" th:field="${room.price}" /><br/>
+  <input type="submit" value="Save" />
+  </form>
+
+</div>
+</body>
+</html>

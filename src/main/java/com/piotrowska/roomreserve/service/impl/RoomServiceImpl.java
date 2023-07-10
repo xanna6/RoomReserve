@@ -32,4 +32,10 @@ public class RoomServiceImpl implements RoomService {
         this.roomRepository.save(room);
     }
 
+    @Override
+    public void deleteRoom(Long id) {
+        Room roomToDelete = this.getRoomById(id);
+        this.roomRepository.delete(roomToDelete);
+    }
+
 }

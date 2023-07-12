@@ -37,8 +37,21 @@ public class RoomController {
     }
 
     @RequestMapping(value="/rooms/delete/{id}", method = RequestMethod.DELETE)
-    public String deleteBook(@PathVariable Long id) {
+    public String deleteRoom(@PathVariable Long id) {
         this.roomService.deleteRoom(id);
+        return "redirect:/rooms";
+    }
+
+    @GetMapping("/rooms/new")
+    public String showAddRoom(Model model) {
+        model.addAttribute("room", new Room());
+        return "editRoom";
+    }
+
+    @PostMapping("/rooms/new")
+    public String addRoom(Room room) {
+        System.out.println(room.toString());
+        this.roomService.addRoom(room);
         return "redirect:/rooms";
     }
 }

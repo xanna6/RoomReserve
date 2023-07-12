@@ -1,12 +1,12 @@
 package com.piotrowska.roomreserve.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Room {
 
     @Id
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
     private int people;
     private int singleBed;

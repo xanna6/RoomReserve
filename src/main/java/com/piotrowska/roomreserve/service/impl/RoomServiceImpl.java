@@ -38,4 +38,9 @@ public class RoomServiceImpl implements RoomService {
         this.roomRepository.delete(roomToDelete);
     }
 
+    @Override
+    public void addRoom(Room room) {
+        this.roomRepository.save(room);
+    }
+
 }

@@ -1,17 +1,21 @@
 package com.piotrowska.roomreserve.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Guest {
 
     @Id
     private Long id;
-    private String name;
+    private String firstname;
     private String surname;
     private String phoneNumber;
     private String mail;
+
+    @OneToMany(mappedBy = "guest")
+    private Set<RoomGuest> reservations;
 
     public void setId(Long id) {
         this.id = id;
@@ -22,12 +26,12 @@ public class Guest {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getSurname() {
@@ -54,11 +58,19 @@ public class Guest {
         this.mail = mail;
     }
 
+    public Set<RoomGuest> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Set<RoomGuest> reservations) {
+        this.reservations = reservations;
+    }
+
     @Override
     public String toString() {
         return "Guest{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + firstname + '\'' +
                 ", surname='" + surname + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", mail='" + mail + '\'' +

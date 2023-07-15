@@ -8,6 +8,7 @@ import java.time.LocalDate;
 public class RoomGuest {
 
     @Id
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne

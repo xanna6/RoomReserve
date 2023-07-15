@@ -8,6 +8,7 @@ import java.util.Set;
 public class Guest {
 
     @Id
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
     private String firstname;
     private String surname;
@@ -21,7 +22,6 @@ public class Guest {
         this.id = id;
     }
 
-    @Id
     public Long getId() {
         return id;
     }

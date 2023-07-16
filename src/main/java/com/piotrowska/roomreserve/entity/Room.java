@@ -2,6 +2,8 @@ package com.piotrowska.roomreserve.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 public class Room {
 
@@ -12,6 +14,9 @@ public class Room {
     private int singleBed;
     private int doubleBed;
     private int price;
+
+    @OneToMany(mappedBy = "room")
+    private Set<RoomGuest> reservations;
 
     public Long getId() {
         return id;
@@ -51,6 +56,14 @@ public class Room {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public Set<RoomGuest> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Set<RoomGuest> reservations) {
+        this.reservations = reservations;
     }
 
     @Override

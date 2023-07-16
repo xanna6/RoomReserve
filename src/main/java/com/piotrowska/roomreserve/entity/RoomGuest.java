@@ -3,6 +3,7 @@ package com.piotrowska.roomreserve.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class RoomGuest {
@@ -24,6 +25,7 @@ public class RoomGuest {
     private int price;
     private int numberOfAdults;
     private int numberOfChildren;
+    private LocalDateTime creationDate;
 
     public Long getId() {
         return id;

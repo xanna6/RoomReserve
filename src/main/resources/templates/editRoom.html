@@ -12,7 +12,7 @@
 
   <h3>Edit room</h3>
 
-  <form method="post" th:object="${room}">
+  <form th:action="@{/rooms/new}" method="post" th:object="${room}">
   Number of people: <input type="text" th:field="${room.people}" /><br/>
   Single beds: <input type="text" th:field="${room.singleBed}" /><br/>
   Double beds: <input type="text" th:field="${room.doubleBed}" /><br/>

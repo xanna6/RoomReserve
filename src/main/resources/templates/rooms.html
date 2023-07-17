@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="ISO-8859-1">
     <title>Rooms</title>
@@ -10,9 +12,10 @@
 <body>
 <div class="container my-2" align="center">
 
+    <a style="float: right" th:href="@{/logout}">Logout</a>
     <h3>Room List</h3>
     <span style="color: green; margin-bottom: 20px;" th:text="${message}"></span>
-    <div>
+    <div sec:authorize-url="/rooms/**">
         <a th:href="@{/rooms/new}">
             <button style="margin-bottom: 20px; float: right; margin-right: 100px" type="button">Add</button>
         </a>
@@ -38,7 +41,7 @@
                 <td th:text="${room.singleBed}"></td>
                 <td th:text="${room.doubleBed}"></td>
                 <td th:text="${room.price}"></td>
-                <td>
+                <td sec:authorize-url="/rooms/**">
                     <a th:href="@{/rooms/edit/{id}(id=${room.id})}"><button type="button">edit</button></a>
                     <form action="#" th:action="@{/rooms/delete/{id}(id=${room.id})}" th:method="delete" >
                         <button type="submit">delete</button>

@@ -90,4 +90,19 @@ public class RoomGuest {
     public void setNumberOfChildren(int numberOfChildren) {
         this.numberOfChildren = numberOfChildren;
     }
+
+    @Override
+    public String toString() {
+        return "RoomGuest{" +
+                "id=" + id +
+                ", roomId=" + room.getId() +
+                ", guestId=" + guest.getId() +
+                ", fromDate=" + fromDate +
+                ", toDate=" + toDate +
+                ", price=" + price +
+                ", numberOfAdults=" + numberOfAdults +
+                ", numberOfChildren=" + numberOfChildren +
+                ", creationDate=" + creationDate +
+                '}';
+    }
 }

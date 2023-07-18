@@ -74,6 +74,7 @@ public class Room {
                 ", singleBed=" + singleBed +
                 ", doubleBed=" + doubleBed +
                 ", price=" + price +
+                ", reservations=" + reservations +
                 '}';
     }
 }

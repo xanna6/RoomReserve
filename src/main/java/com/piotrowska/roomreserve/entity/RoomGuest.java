@@ -95,8 +95,8 @@ public class RoomGuest {
     public String toString() {
         return "RoomGuest{" +
                 "id=" + id +
-                ", room=" + room +
-                ", guest=" + guest +
+                ", roomId=" + room.getId() +
+                ", guestId=" + guest.getId() +
                 ", fromDate=" + fromDate +
                 ", toDate=" + toDate +
                 ", price=" + price +

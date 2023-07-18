@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ReservationRepository extends JpaRepository<RoomGuest, Long> {
 
-    @Query("SELECT rg FROM RoomGuest rg JOIN Guest g ON rg.guest.id=g.id ORDER BY rg.creationDate desc")
+    @Query("SELECT rg FROM RoomGuest rg JOIN Guest g ON rg.guest.id=g.id ORDER BY rg.fromDate ASC")
     List<RoomGuest> findAllReservations();
 }

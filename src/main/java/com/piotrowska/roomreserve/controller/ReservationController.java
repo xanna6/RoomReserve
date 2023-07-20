@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -36,5 +37,11 @@ public class ReservationController {
         Long reservationId = Long.valueOf(id);
         model.addAttribute("reservation", this.reservationService.getReservationById(reservationId));
         return "editReservation";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editReservation(RoomGuest roomGuest) {
+        this.reservationService.editReservation(roomGuest);
+        return "redirect:/reservations";
     }
 }

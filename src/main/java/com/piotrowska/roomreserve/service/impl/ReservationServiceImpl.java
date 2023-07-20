@@ -26,4 +26,10 @@ public class ReservationServiceImpl implements ReservationService {
     public RoomGuest getReservationById(Long id) {
         return this.reservationRepository.getReferenceById(id);
     }
+
+    @Override
+    public void editReservation(RoomGuest roomGuest) {
+        this.reservationRepository.updateReservationDatesPriceNumberOfGuests(roomGuest.getId(), roomGuest.getFromDate(),
+                roomGuest.getToDate(), roomGuest.getPrice(), roomGuest.getNumberOfAdults(), roomGuest.getNumberOfChildren());
+    }
 }

@@ -91,6 +91,14 @@ public class RoomGuest {
         this.numberOfChildren = numberOfChildren;
     }
 
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
     @Override
     public String toString() {
         return "RoomGuest{" +

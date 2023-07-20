@@ -7,4 +7,5 @@ import java.util.List;
 public interface ReservationService {
     List<RoomGuest> getAllReservations();
     RoomGuest getReservationById(Long id);
+    void editReservation(RoomGuest roomGuest);
 }

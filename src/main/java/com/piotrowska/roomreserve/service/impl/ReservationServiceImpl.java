@@ -32,4 +32,9 @@ public class ReservationServiceImpl implements ReservationService {
         this.reservationRepository.updateReservationDatesPriceNumberOfGuests(roomGuest.getId(), roomGuest.getFromDate(),
                 roomGuest.getToDate(), roomGuest.getPrice(), roomGuest.getNumberOfAdults(), roomGuest.getNumberOfChildren());
     }
+
+    @Override
+    public void deleteReservation(Long id) {
+        this.reservationRepository.deleteById(id);
+    }
 }

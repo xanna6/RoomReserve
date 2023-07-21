@@ -27,6 +27,7 @@ public class RoomController {
     public String showEditRoom(Model model, @PathVariable String id) {
         Long roomId = Long.valueOf(id);
         model.addAttribute("room",this.roomService.getRoomById(roomId));
+        model.addAttribute("mode", "edit");
         return "editRoom";
     }
 
@@ -46,6 +47,7 @@ public class RoomController {
     @GetMapping("/rooms/new")
     public String showAddRoom(Model model) {
         model.addAttribute("room", new Room());
+        model.addAttribute("mode", "add");
         return "editRoom";
     }
 

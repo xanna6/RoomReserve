@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@RequestMapping(value = "/rooms")
 public class RoomController {
     private final RoomService roomService;
 
@@ -17,39 +18,41 @@ public class RoomController {
         this.roomService = roomService;
     }
 
-    @GetMapping("/rooms")
+    @GetMapping
     public String getRooms(Model model) {
         model.addAttribute("roomList", this.roomService.getAllRooms());
         return "rooms";
     }
 
-    @GetMapping("/rooms/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String showEditRoom(Model model, @PathVariable String id) {
         Long roomId = Long.valueOf(id);
         model.addAttribute("room",this.roomService.getRoomById(roomId));
+        model.addAttribute("mode", "edit");
         return "editRoom";
     }
 
-    @PostMapping("/rooms/edit/{id}")
+    @PostMapping("/edit/{id}")
     public String editRoom(Room room) {
         System.out.println(room.toString());
         this.roomService.editRoom(room);
         return "redirect:/rooms";
     }
 
-    @RequestMapping(value="/rooms/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/delete/{id}", method = RequestMethod.DELETE)
     public String deleteRoom(@PathVariable Long id) {
         this.roomService.deleteRoom(id);
         return "redirect:/rooms";
     }
 
-    @GetMapping("/rooms/new")
+    @GetMapping("/new")
     public String showAddRoom(Model model) {
         model.addAttribute("room", new Room());
+        model.addAttribute("mode", "add");
         return "editRoom";
     }
 
-    @PostMapping("/rooms/new")
+    @PostMapping("/new")
     public String addRoom(RedirectAttributes model, Room room) {
         System.out.println(room.toString());
         this.roomService.addRoom(room);

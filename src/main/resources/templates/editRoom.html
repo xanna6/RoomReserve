@@ -12,12 +12,17 @@
 
   <h3>Edit room</h3>
 
-  <form th:action="@{/rooms/new}" method="post" th:object="${room}">
-  Number of people: <input type="text" th:field="${room.people}" /><br/>
-  Single beds: <input type="text" th:field="${room.singleBed}" /><br/>
-  Double beds: <input type="text" th:field="${room.doubleBed}" /><br/>
-  Price: <input type="text" th:field="${room.price}" /><br/>
-  <input type="submit" value="Save" />
+  <form th:action="@{/rooms/edit/{id}(id=${room.id})}" method="post" th:object="${room}">
+    Number of people: <input type="text" th:field="${room.people}" /><br/>
+    Single beds: <input type="text" th:field="${room.singleBed}" /><br/>
+    Double beds: <input type="text" th:field="${room.doubleBed}" /><br/>
+    Price: <input type="text" th:field="${room.price}" /><br/>
+    <div th:if="'edit' == ${mode}">
+      <input type="submit" value="Save" />
+    </div>
+    <div th:if="'add' == ${mode}">
+      <input type="submit" value="Add" th:formaction="@{/rooms/new}">
+    </div>
   </form>
 
 </div>

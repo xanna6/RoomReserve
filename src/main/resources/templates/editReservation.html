@@ -8,18 +8,23 @@
         crossorigin="anonymous">
 </head>
 <body>
-<div class="container my-2" align="center">
 
-  <h3>Edit room</h3>
+  <div id="header" th:insert="~{schema.html :: header}"></div>
 
-  <form th:action="@{/reservations/edit/{id}(id=${reservation.id})}" method="post" th:object="${reservation}">
-    From date: <input type="text" th:field="${reservation.fromDate}" /><br/>
-    To date: <input type="text" th:field="${reservation.toDate}" /><br/>
-    Price: <input type="text" th:field="${reservation.price}" /><br/>
-    Number of adults: <input type="text" th:field="${reservation.numberOfAdults}" /><br/>
-    Number of children <input type="text" th:field="${reservation.numberOfChildren}" /><br/>
-    <input type="submit" value="Save" />
-  </form>
+  <div id="content" class="container my-2" align="center">
+    <h3>Edit room</h3>
+
+    <form th:action="@{/reservations/edit/{id}(id=${reservation.id})}" method="post" th:object="${reservation}">
+      From date: <input type="text" th:field="${reservation.fromDate}" /><br/>
+      To date: <input type="text" th:field="${reservation.toDate}" /><br/>
+      Price: <input type="text" th:field="${reservation.price}" /><br/>
+      Number of adults: <input type="text" th:field="${reservation.numberOfAdults}" /><br/>
+      Number of children <input type="text" th:field="${reservation.numberOfChildren}" /><br/>
+      <input type="submit" value="Save" />
+    </form>
+  </div>
+
+  <div id="footer" th:insert="~{schema.html :: footer}"></div>
 
 </div>
 </body>

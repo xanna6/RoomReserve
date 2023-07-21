@@ -8,4 +8,5 @@ public interface ReservationService {
     List<RoomGuest> getAllReservations();
     RoomGuest getReservationById(Long id);
     void editReservation(RoomGuest roomGuest);
+    void deleteReservation(Long id);
 }

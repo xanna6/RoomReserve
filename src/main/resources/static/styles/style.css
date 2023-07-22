@@ -1,0 +1,46 @@
+.btnMenu {
+    color: white;
+    background-color: cornflowerblue;
+    text-decoration: none;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-right: 400px;
+    font-family: Verdana;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+a.btnMenu:hover {
+    background-color: #4881ea;
+}
+
+.btnHome {
+    color: cornflowerblue;
+    background-color: white;
+    text-decoration: none;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-family: Verdana;
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: none;
+}
+
+.menu {
+    margin: 20px;
+    border-bottom: gray;
+    border-bottom-width: thin;
+    border-bottom-style: solid;
+    padding-bottom: 20px;
+}

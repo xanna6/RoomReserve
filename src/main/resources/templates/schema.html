@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css" />
+</head>
 
 <body>
-<div th:fragment="header" style="margin: 20px;">
-    <a th:href="@{/}">
-        <span style="font-size: 30px;">RoomReserve</span>
-    </a>
-    <a style="float: right;" th:href="@{/logout}">Logout</a>
+<div th:fragment="header" class="menu">
+    <a th:href="@{/}" class="btnHome">RoomReserve</a>
+
+    <div style="display: inline; float: right;">
+        <a th:href="@{/rooms}" class="btnMenu">Rooms</a>
+        <a th:href="@{/reservations}" class="btnMenu">Reservations</a>
+        <a th:href="@{/logout}"><button>Logout</button></a>
+    </div>
 </div>
 
 <div>content</div>

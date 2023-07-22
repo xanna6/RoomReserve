@@ -2,24 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="ISO-8859-1">
-  <title>editRoom</title>
-  <link rel="stylesheet"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
+  <title>editReservation</title>
+  <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div class="container my-2" align="center">
 
-  <h3>Edit room</h3>
+  <div id="header" th:insert="~{schema.html :: header}"></div>
 
-  <form th:action="@{/reservations/edit/{id}(id=${reservation.id})}" method="post" th:object="${reservation}">
-    From date: <input type="text" th:field="${reservation.fromDate}" /><br/>
-    To date: <input type="text" th:field="${reservation.toDate}" /><br/>
-    Price: <input type="text" th:field="${reservation.price}" /><br/>
-    Number of adults: <input type="text" th:field="${reservation.numberOfAdults}" /><br/>
-    Number of children <input type="text" th:field="${reservation.numberOfChildren}" /><br/>
-    <input type="submit" value="Save" />
-  </form>
+  <div id="content" class="container my-2" align="center">
+    <h3>Edit room</h3>
+
+    <form th:action="@{/reservations/edit/{id}(id=${reservation.id})}" method="post" th:object="${reservation}">
+      From date: <input type="text" th:field="${reservation.fromDate}" /><br/>
+      To date: <input type="text" th:field="${reservation.toDate}" /><br/>
+      Price: <input type="text" th:field="${reservation.price}" /><br/>
+      Number of adults: <input type="text" th:field="${reservation.numberOfAdults}" /><br/>
+      Number of children <input type="text" th:field="${reservation.numberOfChildren}" /><br/>
+      <input type="submit" value="Save" />
+    </form>
+  </div>
+
+  <div id="footer" th:insert="~{schema.html :: footer}"></div>
 
 </div>
 </body>

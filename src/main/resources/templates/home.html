@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RoomReserve</title>
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="header" th:insert="~{schema.html :: header}"></div>
+
+    <div style="float: left; width: 30%;">
+        <img th:src="@{/images/mountain_guesthouse.png}" alt="Our guesthouse" style="width:400px; height:400px;"/>
+    </div>
+    <div id="content" class="guestHouseDescription">
+        <h1>Welcome to our charming mountain guesthouse!</h1>
+        <p>Our guesthouse is situated in a picturesque area, surrounded by majestic mountain peaks,
+            providing our guests with unforgettable experiences and a true connection with nature.</p>
+        <p>We offer a variety of cozy and comfortable rooms, designed to ensure a delightful stay. Each room is tastefully decorated,
+            equipped with a private bathroom, and furnished with all the amenities to make your stay truly exceptional.</p>
+        <p>Our passionate staff takes great care of our guests, always ready to assist and fulfill any requests.
+            With our online reservation system, booking rooms is easy and convenient – just a few clicks to plan your dream vacation.</p>
+        <p>After a day of exploring the beauty of the nearby mountain trails, we invite you to our restaurant,
+            where delicious local dishes and regional specialties are served. In the evening,
+            you can unwind by the fireplace and enjoy the magical view outside the windows.</p>
+        <p>Our guesthouse is the perfect place for a wonderful mountain getaway, whether you're an avid hiker or seeking relaxation in a serene atmosphere.
+            We warmly welcome you and assure you that your stay at our guesthouse will be an unforgettable experience!</p>
+    </div>
+    <div style="clear: both;"></div>
+
+    <div id="footer" th:insert="~{schema.html :: footer}"></div>
+</body>
+</html>

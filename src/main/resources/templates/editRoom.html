@@ -3,28 +3,30 @@
 <head>
   <meta charset="ISO-8859-1">
   <title>editRoom</title>
-  <link rel="stylesheet"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
+  <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div class="container my-2" align="center">
 
-  <h3>Edit room</h3>
+  <div id="header" th:insert="~{schema.html :: header}"></div>
 
-  <form th:action="@{/rooms/edit/{id}(id=${room.id})}" method="post" th:object="${room}">
-    Number of people: <input type="text" th:field="${room.people}" /><br/>
-    Single beds: <input type="text" th:field="${room.singleBed}" /><br/>
-    Double beds: <input type="text" th:field="${room.doubleBed}" /><br/>
-    Price: <input type="text" th:field="${room.price}" /><br/>
-    <div th:if="'edit' == ${mode}">
-      <input type="submit" value="Save" />
-    </div>
-    <div th:if="'add' == ${mode}">
-      <input type="submit" value="Add" th:formaction="@{/rooms/new}">
-    </div>
-  </form>
+  <div id="content" class="container my-2" align="center">
 
-</div>
+    <h3>Edit room</h3>
+
+    <form th:action="@{/rooms/edit/{id}(id=${room.id})}" method="post" th:object="${room}">
+      Number of people: <input type="text" th:field="${room.people}" /><br/>
+      Single beds: <input type="text" th:field="${room.singleBed}" /><br/>
+      Double beds: <input type="text" th:field="${room.doubleBed}" /><br/>
+      Price: <input type="text" th:field="${room.price}" /><br/>
+      <div th:if="'edit' == ${mode}">
+        <input type="submit" value="Save" />
+      </div>
+      <div th:if="'add' == ${mode}">
+        <input type="submit" value="Add" th:formaction="@{/rooms/new}">
+      </div>
+    </form>
+  </div>
+
+  <div id="footer" th:insert="~{schema.html :: footer}"></div>
 </body>
 </html>

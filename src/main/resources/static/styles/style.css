@@ -44,3 +44,15 @@ a.btnMenu:hover {
     border-bottom-style: solid;
     padding-bottom: 20px;
 }
+
+.guestHouseDescription {
+    width: 50%;
+    margin: auto;
+    text-align: left;
+    float: left;
+    font-family: Verdana;
+}
+
+p.guestHouseDescription {
+    font-size: larger;
+}

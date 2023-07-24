@@ -42,11 +42,9 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<RoomGuest> getFilteredReservations(String dateFrom, String dateTo, Long roomId) {
+    public List<RoomGuest> getFilteredReservations(String dateFrom, String dateTo, List<Long> roomIds) {
         LocalDate fromDate = LocalDate.parse(dateFrom);
         LocalDate toDate = LocalDate.parse(dateTo);
-        List<Long> roomList = new ArrayList<>();
-        roomList.add(roomId);
-        return this.reservationRepository.findRoomGuestByFromDateGreaterThanEqualAndToDateLessThanEqualAndRoomIdIn(fromDate, toDate, roomList);
+        return this.reservationRepository.findRoomGuestByFromDateGreaterThanEqualAndToDateLessThanEqualAndRoomIdIn(fromDate, toDate, roomIds);
     }
 }

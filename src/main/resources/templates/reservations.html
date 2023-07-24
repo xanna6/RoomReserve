@@ -24,24 +24,12 @@
                     </label>
                 </div>
                 <div id="roomNumberFilter" style="float: left;width: 100%">
-                    <label style="float: left">Room number:
-                        <!--
-                        <input type="checkbox" id="room1" name="room1" value="1">
-                        <label for="room1"> 1</label><br/>
-                        <input type="checkbox" id="room2" name="room2" value="2">
-                        <label for="room2"> 2</label><br/>
-                        <input type="checkbox" id="room3" name="room3" value="3">
-                        <label for="room3"> 3</label><br/>
-                        <input type="checkbox" id="room4" name="room4" value="4">
-                        <label for="room4"> 4</label><br/>
-                        <input type="checkbox" id="room5" name="room5" value="5">
-                        <label for="room5"> 5</label><br/>
-                        <input type="checkbox" id="room6" name="room6" value="6">
-                        <label for="room6"> 6</label><br/>
-                        <input type="checkbox" id="room7" name="room7" value="7">
-                        <label for="room7"> 7</label><br/>
-                        -->
-                        <input id="roomNumberReservationFilter" type="text" th:value="${roomNumber}" th:name="roomNumber"/>
+                    <label style="float: left">RoomId:
+                        <input type="checkbox" name="roomIds"
+                               th:each="roomId : ${roomIds}"
+                               th:text="${roomId}"
+                               th:value="${roomId}"
+                        />
                     </label>
                 </div>
                 <div>

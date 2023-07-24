@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -26,6 +27,11 @@ public class ReservationController {
             System.out.println(rg.toString());
         }
         model.addAttribute("reservations", reservations);
+        List<Long> roomIds = new ArrayList<>();
+        for (long i = 1; i <= 7; i++) {
+            roomIds.add(i);
+        }
+        model.addAttribute("roomIds", roomIds);
         return "reservations";
     }
 
@@ -51,10 +57,11 @@ public class ReservationController {
     @GetMapping("/filter")
     public String getFilteredReservations(@RequestParam(name = "fromDate", defaultValue = "") String fromDate,
                                           @RequestParam(name = "toDate", defaultValue = "") String toDate,
-                                          @RequestParam(name = "roomNumber") Long roomNumber, Model model) {
-        System.out.println("fromDate: " + fromDate + "\ttoDate: " + toDate + "\trooomNumber: " + roomNumber);
-        List<RoomGuest> reservations = this.reservationService.getFilteredReservations(fromDate, toDate, roomNumber);
+                                          @RequestParam(name = "roomIds") List<Long> roomIds, Model model) {
+        System.out.println("fromDate: " + fromDate + "\ttoDate: " + toDate + "\trooomNumber: " + roomIds);
+        List<RoomGuest> reservations = this.reservationService.getFilteredReservations(fromDate, toDate, roomIds);
         model.addAttribute("reservations", reservations);
+        model.addAttribute("roomIds", roomIds);
         return "reservations";
     }
 }

@@ -47,4 +47,14 @@ public class ReservationController {
         this.reservationService.deleteReservation(id);
         return "redirect:/reservations";
     }
+
+    @GetMapping("/filter")
+    public String getFilteredReservations(@RequestParam(name = "fromDate", defaultValue = "") String fromDate,
+                                          @RequestParam(name = "toDate", defaultValue = "") String toDate,
+                                          @RequestParam(name = "roomNumber") Long roomNumber, Model model) {
+        System.out.println("fromDate: " + fromDate + "\ttoDate: " + toDate + "\trooomNumber: " + roomNumber);
+        List<RoomGuest> reservations = this.reservationService.getFilteredReservations(fromDate, toDate, roomNumber);
+        model.addAttribute("reservations", reservations);
+        return "reservations";
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface ReservationRepository extends JpaRepository<RoomGuest, Long> {
             "WHERE rg.id = :id")
     void updateReservationDatesPriceNumberOfGuests(@Param("id") Long id, @Param("fromDate") LocalDate fromDate, @Param("toDate") LocalDate toDate,
                                                    @Param("price") int price, @Param("numberOfAdults") int numberOfAdults, @Param("numberOfChildren") int numberOfChildren);
+
+    List<RoomGuest> findRoomGuestByFromDateGreaterThanEqualAndToDateLessThanEqualAndRoomIdIn(LocalDate fromDate, LocalDate toDate, List<Long> roomIds);
 }

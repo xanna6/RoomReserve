@@ -9,4 +9,5 @@ public interface ReservationService {
     RoomGuest getReservationById(Long id);
     void editReservation(RoomGuest roomGuest);
     void deleteReservation(Long id);
+    List<RoomGuest> getFilteredReservations(String fromDate, String toDate, Long roomId);
 }

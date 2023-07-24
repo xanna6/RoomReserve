@@ -56,3 +56,7 @@ a.btnMenu:hover {
 p.guestHouseDescription {
     font-size: larger;
 }
+
+input {
+   margin: 5px;
+}

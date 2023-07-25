@@ -27,11 +27,7 @@ public class ReservationController {
             System.out.println(rg.toString());
         }
         model.addAttribute("reservations", reservations);
-        List<Long> roomIds = new ArrayList<>();
-        for (long i = 1; i <= 7; i++) {
-            roomIds.add(i);
-        }
-        model.addAttribute("roomIds", roomIds);
+        model.addAttribute("roomIds", loadRoomIdList());
         return "reservations";
     }
 
@@ -61,7 +57,15 @@ public class ReservationController {
         System.out.println("fromDate: " + fromDate + "\ttoDate: " + toDate + "\trooomNumber: " + roomIds);
         List<RoomGuest> reservations = this.reservationService.getFilteredReservations(fromDate, toDate, roomIds);
         model.addAttribute("reservations", reservations);
-        model.addAttribute("roomIds", roomIds);
+        model.addAttribute("roomIds", loadRoomIdList());
         return "reservations";
+    }
+
+    private List<Long> loadRoomIdList() {
+        List<Long> roomIds = new ArrayList<>();
+        for (long i = 1; i <= 7; i++) {
+            roomIds.add(i);
+        }
+        return roomIds;
     }
 }

@@ -51,10 +51,9 @@ public class ReservationController {
     }
 
     @GetMapping("/filter")
-    public String getFilteredReservations(@RequestParam(name = "fromDate", defaultValue = "") String fromDate,
-                                          @RequestParam(name = "toDate", defaultValue = "") String toDate,
-                                          @RequestParam(name = "roomIds") List<Long> roomIds, Model model) {
-        System.out.println("fromDate: " + fromDate + "\ttoDate: " + toDate + "\trooomNumber: " + roomIds);
+    public String getFilteredReservations(@RequestParam(name = "fromDate", defaultValue = "2023-06-01") String fromDate,
+                                          @RequestParam(name = "toDate", defaultValue = "2099-12-31") String toDate,
+                                          @RequestParam(name = "roomIds", required = false) List<Long> roomIds, Model model) {
         List<RoomGuest> reservations = this.reservationService.getFilteredReservations(fromDate, toDate, roomIds);
         model.addAttribute("reservations", reservations);
         model.addAttribute("roomIds", loadRoomIdList());

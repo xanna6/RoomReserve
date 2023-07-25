@@ -45,6 +45,10 @@ public class ReservationServiceImpl implements ReservationService {
     public List<RoomGuest> getFilteredReservations(String dateFrom, String dateTo, List<Long> roomIds) {
         LocalDate fromDate = LocalDate.parse(dateFrom);
         LocalDate toDate = LocalDate.parse(dateTo);
-        return this.reservationRepository.findRoomGuestByFromDateGreaterThanEqualAndToDateLessThanEqualAndRoomIdIn(fromDate, toDate, roomIds);
+        if (roomIds == null || roomIds.size() == 0) {
+            return this.reservationRepository.findRoomGuestByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
+        } else {
+            return this.reservationRepository.findRoomGuestByFromDateGreaterThanEqualAndToDateLessThanEqualAndRoomIdIn(fromDate, toDate, roomIds);
+        }
     }
 }

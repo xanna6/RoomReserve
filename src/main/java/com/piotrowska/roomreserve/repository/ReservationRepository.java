@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -25,4 +24,6 @@ public interface ReservationRepository extends JpaRepository<RoomGuest, Long> {
                                                    @Param("price") int price, @Param("numberOfAdults") int numberOfAdults, @Param("numberOfChildren") int numberOfChildren);
 
     List<RoomGuest> findRoomGuestByFromDateGreaterThanEqualAndToDateLessThanEqualAndRoomIdIn(LocalDate fromDate, LocalDate toDate, List<Long> roomIds);
+
+    List<RoomGuest> findRoomGuestByFromDateGreaterThanEqualAndToDateLessThanEqual(LocalDate fromDate, LocalDate toDate);
 }

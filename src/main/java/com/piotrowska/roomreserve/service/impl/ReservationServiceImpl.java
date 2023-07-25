@@ -6,6 +6,9 @@ import com.piotrowska.roomreserve.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -36,5 +39,16 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void deleteReservation(Long id) {
         this.reservationRepository.deleteById(id);
+    }
+
+    @Override
+    public List<RoomGuest> getFilteredReservations(String dateFrom, String dateTo, List<Long> roomIds) {
+        LocalDate fromDate = LocalDate.parse(dateFrom);
+        LocalDate toDate = LocalDate.parse(dateTo);
+        if (roomIds == null || roomIds.size() == 0) {
+            return this.reservationRepository.findRoomGuestByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
+        } else {
+            return this.reservationRepository.findRoomGuestByFromDateGreaterThanEqualAndToDateLessThanEqualAndRoomIdIn(fromDate, toDate, roomIds);
+        }
     }
 }

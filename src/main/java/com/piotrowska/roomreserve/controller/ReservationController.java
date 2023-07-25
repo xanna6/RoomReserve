@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -26,6 +27,7 @@ public class ReservationController {
             System.out.println(rg.toString());
         }
         model.addAttribute("reservations", reservations);
+        model.addAttribute("roomIds", loadRoomIdList());
         return "reservations";
     }
 
@@ -46,5 +48,23 @@ public class ReservationController {
     public String deleteRoom(@PathVariable Long id) {
         this.reservationService.deleteReservation(id);
         return "redirect:/reservations";
+    }
+
+    @GetMapping("/filter")
+    public String getFilteredReservations(@RequestParam(name = "fromDate", defaultValue = "2023-06-01") String fromDate,
+                                          @RequestParam(name = "toDate", defaultValue = "2099-12-31") String toDate,
+                                          @RequestParam(name = "roomIds", required = false) List<Long> roomIds, Model model) {
+        List<RoomGuest> reservations = this.reservationService.getFilteredReservations(fromDate, toDate, roomIds);
+        model.addAttribute("reservations", reservations);
+        model.addAttribute("roomIds", loadRoomIdList());
+        return "reservations";
+    }
+
+    private List<Long> loadRoomIdList() {
+        List<Long> roomIds = new ArrayList<>();
+        for (long i = 1; i <= 7; i++) {
+            roomIds.add(i);
+        }
+        return roomIds;
     }
 }

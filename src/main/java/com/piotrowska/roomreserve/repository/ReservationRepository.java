@@ -22,4 +22,8 @@ public interface ReservationRepository extends JpaRepository<RoomGuest, Long> {
             "WHERE rg.id = :id")
     void updateReservationDatesPriceNumberOfGuests(@Param("id") Long id, @Param("fromDate") LocalDate fromDate, @Param("toDate") LocalDate toDate,
                                                    @Param("price") int price, @Param("numberOfAdults") int numberOfAdults, @Param("numberOfChildren") int numberOfChildren);
+
+    List<RoomGuest> findRoomGuestByFromDateGreaterThanEqualAndToDateLessThanEqualAndRoomIdIn(LocalDate fromDate, LocalDate toDate, List<Long> roomIds);
+
+    List<RoomGuest> findRoomGuestByFromDateGreaterThanEqualAndToDateLessThanEqual(LocalDate fromDate, LocalDate toDate);
 }

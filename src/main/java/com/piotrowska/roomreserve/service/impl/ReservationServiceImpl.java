@@ -5,13 +5,12 @@ import com.piotrowska.roomreserve.repository.ReservationRepository;
 import com.piotrowska.roomreserve.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+@Service
 public class ReservationServiceImpl implements ReservationService {
     private final ReservationRepository reservationRepository;
 

@@ -1,5 +1,6 @@
 package com.piotrowska.roomreserve.controller;
 
+import com.piotrowska.roomreserve.entity.Guest;
 import com.piotrowska.roomreserve.entity.RoomGuest;
 import com.piotrowska.roomreserve.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,10 @@ public class ReservationController {
     @GetMapping("/edit/{id}")
     public String showEditReservation(Model model, @PathVariable String id) {
         Long reservationId = Long.valueOf(id);
-        model.addAttribute("reservation", this.reservationService.getReservationById(reservationId));
+        RoomGuest reservation = this.reservationService.getReservationById(reservationId);
+        model.addAttribute("guest", reservation.getGuest());
+        model.addAttribute("reservation", reservation);
+        model.addAttribute("mode", "edit");
         return "editReservation";
     }
 
@@ -58,6 +62,27 @@ public class ReservationController {
         model.addAttribute("reservations", reservations);
         model.addAttribute("roomIds", loadRoomIdList());
         return "reservations";
+    }
+
+    @GetMapping("/new")
+    public String showAddReservation(Model model) {
+        model.addAttribute("mode", "add");
+        if (!model.containsAttribute("guest")) {
+            model.addAttribute("guest", new Guest());
+            return "guestData";
+        } else {
+            RoomGuest reservation = new RoomGuest();
+            reservation.setGuest((Guest) model.getAttribute("guest"));
+            model.addAttribute("reservation", reservation);
+            return "editReservation";
+        }
+    }
+
+    @PostMapping("/new")
+    public String addReservation(RoomGuest roomGuest) {
+        System.out.println(roomGuest.toString());
+        this.reservationService.addReservation(roomGuest);
+        return "redirect:/reservations";
     }
 
     private List<Long> loadRoomIdList() {

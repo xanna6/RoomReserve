@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>addReservation</title>
+  <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header" th:insert="~{schema.html :: header}"></div>
+
+  <div id="content" class="container my-2" align="center">
+
+    <div th:if="${guest.id == null}">
+      <h3>Add reservation</h3>
+      <h4>Insert personal data:</h4>
+      <form th:action="@{/guest/save}" method="post" th:object="${guest}">
+        Firstname: <input type="text" th:value="${guest.firstname}" th:name="firstname"/><br/>
+        Surname: <input type="text" th:value="${guest.surname}" th:name="surname"/><br/>
+        E-mail: <input type="text" th:value="${guest.mail}" th:name="mail"/><br/>
+        Phone number: <input type="text" th:value="${guest.phoneNumber}" th:name="phoneNumber"/><br/>
+        <input type="submit" value="Save" />
+      </form>
+    </div>
+  </div>
+
+  <div id="footer" th:insert="~{schema.html :: footer}"></div>
+
+</body>
+</html>

@@ -51,4 +51,9 @@ public class ReservationServiceImpl implements ReservationService {
             return this.reservationRepository.findRoomGuestByFromDateGreaterThanEqualAndToDateLessThanEqualAndRoomIdIn(fromDate, toDate, roomIds);
         }
     }
+
+    @Override
+    public void addReservation(RoomGuest reservation) {
+        this.reservationRepository.save(reservation);
+    }
 }

@@ -38,6 +38,7 @@ public class ReservationController {
         RoomGuest reservation = this.reservationService.getReservationById(reservationId);
         model.addAttribute("guest", reservation.getGuest());
         model.addAttribute("reservation", reservation);
+        model.addAttribute("mode", "edit");
         return "editReservation";
     }
 
@@ -65,9 +66,23 @@ public class ReservationController {
 
     @GetMapping("/new")
     public String showAddReservation(Model model) {
-        model.addAttribute("guest", new Guest());
-        model.addAttribute("reservation", new RoomGuest());
-        return "editReservation";
+        model.addAttribute("mode", "add");
+        if (!model.containsAttribute("guest")) {
+            model.addAttribute("guest", new Guest());
+            return "guestData";
+        } else {
+            RoomGuest reservation = new RoomGuest();
+            reservation.setGuest((Guest) model.getAttribute("guest"));
+            model.addAttribute("reservation", reservation);
+            return "editReservation";
+        }
+    }
+
+    @PostMapping("/new")
+    public String addReservation(RoomGuest roomGuest) {
+        System.out.println(roomGuest.toString());
+        this.reservationService.addReservation(roomGuest);
+        return "redirect:/reservations";
     }
 
     private List<Long> loadRoomIdList() {

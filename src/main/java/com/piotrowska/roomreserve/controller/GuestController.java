@@ -23,11 +23,10 @@ public class GuestController {
     }
 
     @PostMapping("/save")
-    public String GetGuest(RedirectAttributes model, @RequestParam(name = "firstname") String firstname, @RequestParam(name = "surname") String surname,
-                           @RequestParam(name = "mail") String mail, @RequestParam(name = "phoneNumber") String phoneNumber) {
-        Guest guest = this.guestService.findGuest(firstname, surname, phoneNumber, mail);
-        System.out.println(guest);
-        model.addFlashAttribute("guest", guest);
+    public String GetGuest(RedirectAttributes model, Guest guest) {
+        Guest savedGuest = this.guestService.findOrInsertGuest(guest);
+        System.out.println(savedGuest);
+        model.addFlashAttribute("guest", savedGuest);
         return "redirect:/reservations/new";
     }
 }

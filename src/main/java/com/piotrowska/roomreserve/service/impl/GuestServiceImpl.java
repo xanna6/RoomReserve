@@ -17,7 +17,14 @@ public class GuestServiceImpl implements GuestService {
     }
 
     @Override
-    public Guest findGuest(String firstname, String surname, String phoneNumber, String mail) {
-        return this.guestRepository.findGuestByFirstnameAndSurnameAndPhoneNumberAndMail(firstname, surname, phoneNumber, mail);
+    public Guest findOrInsertGuest(Guest guest) {
+        Guest foundGuest = this.guestRepository.findGuestByFirstnameAndSurnameAndPhoneNumberAndMail(guest.getFirstname(),
+                guest.getSurname(), guest.getPhoneNumber(), guest.getMail());
+        if (foundGuest == null) {
+            Guest savedGuest = this.guestRepository.save(guest);
+            return savedGuest;
+        } else {
+            return foundGuest;
+        }
     }
 }

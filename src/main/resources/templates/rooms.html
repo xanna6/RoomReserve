@@ -15,6 +15,35 @@
 
         <h3>Room List</h3>
         <span style="color: green; margin-bottom: 20px;" th:text="${message}"></span>
+
+        <div id="filterReservation" style="margin-left: 200px; margin-bottom: 50px; float: left; width: 620px;">
+            <form th:action="@{/rooms/search}" method="GET">
+                <div id="dateFilter" style="float:left;">
+                    <span style="width: 300px; display: inline-flex;">
+                        <label>Date from:
+                            <input id="dateFromReservationFilter" type="date" th:value="${fromDate}" th:name="fromDate"/>
+                        </label>
+                    </span>
+                    <span style="width: 300px; display: inline-flex;">
+                        <label>Date to:
+                            <input id="dateToReservationFilter" type="date" th:value="${toDate}" th:name="toDate"/>
+                        </label>
+                    </span>
+                </div>
+                <div id="numberOfPeopleFilter" style="float:left;">
+                    <label>Number of adults:
+                        <input id="numberOfAdultsFilter" type="number" th:value="${numberOfAdults}" th:name="numberOfAdults"/>
+                    </label>
+                    <label>Number of children:
+                        <input id="numberOfChildrenFilter" type="number" th:value="${numberOfChildren}" th:name="numberOfChildren"/>
+                    </label>
+                </div>
+                <div>
+                    <input type="submit" value="Search" style="float: right">
+                </div>
+            </form>
+        </div>
+
         <div sec:authorize-url="/rooms/**">
             <a th:href="@{/rooms/new}">
                 <button style="margin-bottom: 20px; float: right; margin-right: 100px" type="button">Add</button>

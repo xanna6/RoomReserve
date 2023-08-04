@@ -6,6 +6,7 @@ import com.piotrowska.roomreserve.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -41,6 +42,12 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public void addRoom(Room room) {
         this.roomRepository.save(room);
+    }
+
+    @Override
+    public List<Room> getAvailableRooms(String fromDate, String toDate, int numberOfAdults, int numberOfChildren) {
+        return this.roomRepository.findFilteredRooms(LocalDate.parse(fromDate), LocalDate.parse(toDate),
+                numberOfAdults + numberOfChildren);
     }
 
 }

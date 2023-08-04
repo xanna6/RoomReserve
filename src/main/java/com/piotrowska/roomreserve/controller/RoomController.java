@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(value = "/rooms")
 public class RoomController {
@@ -58,5 +60,20 @@ public class RoomController {
         this.roomService.addRoom(room);
         model.addFlashAttribute("message", "Successfully added room");
         return "redirect:/rooms";
+    }
+
+    @GetMapping("/search")
+    public String getFilteredReservations(@RequestParam(name = "fromDate") String fromDate,
+                                          @RequestParam(name = "toDate") String toDate,
+                                          @RequestParam(name = "numberOfAdults") int numberOfAdults,
+                                          @RequestParam(name = "numberOfChildren") int numberOfChildren,
+                                          Model model) {
+        List<Room> roomList = this.roomService.getAvailableRooms(fromDate, toDate, numberOfAdults, numberOfChildren);
+        model.addAttribute("roomList", roomList);
+        model.addAttribute("fromDate", fromDate);
+        model.addAttribute("toDate", toDate);
+        model.addAttribute("numberOfAdults", numberOfAdults);
+        model.addAttribute("numberOfChildren", numberOfChildren);
+        return "rooms";
     }
 }

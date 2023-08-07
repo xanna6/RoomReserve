@@ -17,4 +17,7 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
             "OR rg.toDate BETWEEN :fromDate AND :toDate)")
     List<Room> findFilteredRooms(@Param("fromDate") LocalDate fromDate, @Param("toDate") LocalDate toDate,
                                  @Param("numberOfGuests") int numberOfGuests);
+
+    @Query("SELECT COUNT (rg.room) FROM RoomGuest rg WHERE rg.room.id = :roomId")
+    int countReservationsForRoom(@Param("roomId") Long roomId);
 }

@@ -34,9 +34,14 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void deleteRoom(Long id) {
-        Room roomToDelete = this.getRoomById(id);
-        this.roomRepository.delete(roomToDelete);
+    public boolean deleteRoom(Long id) {
+        int roomReservations = this.roomRepository.countReservationsForRoom(id);
+        if (roomReservations == 0) {
+            this.roomRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

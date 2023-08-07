@@ -42,8 +42,13 @@ public class RoomController {
     }
 
     @RequestMapping(value="/delete/{id}", method = RequestMethod.DELETE)
-    public String deleteRoom(@PathVariable Long id) {
-        this.roomService.deleteRoom(id);
+    public String deleteRoom(@PathVariable Long id, RedirectAttributes model) {
+        boolean deleted = this.roomService.deleteRoom(id);
+        if (deleted) {
+            model.addFlashAttribute("message", "Successfully deleted room");
+        } else {
+            model.addFlashAttribute("message", "Could not delete room, because there are reservations for this room");
+        }
         return "redirect:/rooms";
     }
 

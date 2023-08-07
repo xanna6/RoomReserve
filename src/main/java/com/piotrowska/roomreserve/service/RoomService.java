@@ -8,7 +8,7 @@ public interface RoomService {
     List<Room> getAllRooms();
     Room getRoomById(Long id);
     void editRoom(Room room);
-    void deleteRoom(Long id);
+    boolean deleteRoom(Long id);
     void addRoom(Room room);
     List<Room> getAvailableRooms(String fromDate, String toDate, int numberOfAdults, int numberOfChildren);
 }

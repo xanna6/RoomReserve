@@ -14,7 +14,7 @@
     <div id="content" class="container my-2" align="center">
 
         <h3>Room List</h3>
-        <span style="color: green; margin-bottom: 20px;" th:text="${message}"></span>
+        <span style="color: green; margin-bottom: 20px; display: block;" th:text="${message}"></span>
 
         <div id="filterReservation" style="margin-left: 200px; margin-bottom: 50px; float: left; width: 620px;">
             <form th:action="@{/rooms/search}" method="GET">

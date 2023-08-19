@@ -19,23 +19,29 @@
         <div id="filterReservation" style="margin-left: 200px; margin-bottom: 50px; float: left; width: 620px;">
             <form th:action="@{/rooms/search}" method="GET">
                 <div id="dateFilter" style="float:left;">
+                    <p th:each="err : ${errors}"
+                       th:text="${err}" />
                     <span style="width: 300px; display: inline-flex;">
                         <label>Date from:
-                            <input id="dateFromReservationFilter" type="date" th:value="${fromDate}" th:name="fromDate"/>
+                            <input id="dateFromReservationFilter" type="date" th:name="fromDate"
+                                   th:value="${fromDate != null} ? ${fromDate} : ${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}" />
                         </label>
                     </span>
                     <span style="width: 300px; display: inline-flex;">
                         <label>Date to:
-                            <input id="dateToReservationFilter" type="date" th:value="${toDate}" th:name="toDate"/>
+                            <input id="dateToReservationFilter" type="date" th:name="toDate"
+                                   th:value="${toDate != null} ? ${toDate} : ${#temporals.format(#temporals.createNow().plusDays(7), 'yyyy-MM-dd')}" />
                         </label>
                     </span>
                 </div>
                 <div id="numberOfPeopleFilter" style="float:left;">
                     <label>Number of adults:
-                        <input id="numberOfAdultsFilter" type="number" th:value="${numberOfAdults}" th:name="numberOfAdults"/>
+                        <input id="numberOfAdultsFilter" type="number" th:name="numberOfAdults"
+                               th:value="${numberOfAdults != null} ? ${numberOfAdults} : 2"/>
                     </label>
                     <label>Number of children:
-                        <input id="numberOfChildrenFilter" type="number" th:value="${numberOfChildren}" th:name="numberOfChildren"/>
+                        <input id="numberOfChildrenFilter" type="number" th:name="numberOfChildren"
+                               th:value="${numberOfChildren != null} ? ${numberOfChildren} : 0"/>
                     </label>
                 </div>
                 <div>
@@ -50,7 +56,7 @@
             </a>
         </div>
 
-        <div>
+        <div th:if="${not #lists.isEmpty(roomList)}">
             <table style="width:80%" border="1"
                    class = "table table-striped table-responsive-md">
                 <thead>
@@ -79,6 +85,10 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div style="clear: both;" th:if="${#lists.isEmpty(roomList)}">
+            <p>No available rooms found.</p>
         </div>
     </div>
 

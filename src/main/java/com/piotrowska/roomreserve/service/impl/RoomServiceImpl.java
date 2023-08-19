@@ -50,9 +50,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List<Room> getAvailableRooms(String fromDate, String toDate, int numberOfAdults, int numberOfChildren) {
-        return this.roomRepository.findFilteredRooms(LocalDate.parse(fromDate), LocalDate.parse(toDate),
-                numberOfAdults + numberOfChildren);
+    public List<Room> getAvailableRooms(LocalDate fromDate, LocalDate toDate, int numberOfAdults, int numberOfChildren) {
+        return this.roomRepository.findFilteredRooms(fromDate, toDate, numberOfAdults + numberOfChildren);
     }
 
 }

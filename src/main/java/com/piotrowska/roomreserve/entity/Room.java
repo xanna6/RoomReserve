@@ -1,6 +1,8 @@
 package com.piotrowska.roomreserve.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 import java.util.Set;
 
@@ -10,9 +12,17 @@ public class Room {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
+    @Min(value = 1, message = "Value should be equal or grater than 1")
+    @Max(value = 8 , message = "Value should be equal or less than 8")
     private int people;
+    @Min(value = 0, message = "Value should be equal or grater than 0")
+    @Max(value = 8 , message = "Value should be equal or less than 8")
     private int singleBed;
+    @Min(value = 0, message = "Value should be equal or grater than 0")
+    @Max(value = 8 , message = "Value should be equal or less than 8")
     private int doubleBed;
+    @Min(value = 0, message = "Value should be equal or grater than 0")
+    @Max(value = 1000, message = "Value should be equal or less than 1000")
     private int price;
 
     @OneToMany(mappedBy = "room")

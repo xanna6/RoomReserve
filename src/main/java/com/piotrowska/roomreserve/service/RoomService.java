@@ -2,6 +2,7 @@ package com.piotrowska.roomreserve.service;
 
 import com.piotrowska.roomreserve.entity.Room;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface RoomService {
@@ -10,5 +11,5 @@ public interface RoomService {
     void editRoom(Room room);
     boolean deleteRoom(Long id);
     void addRoom(Room room);
-    List<Room> getAvailableRooms(String fromDate, String toDate, int numberOfAdults, int numberOfChildren);
+    List<Room> getAvailableRooms(LocalDate fromDate, LocalDate toDate, int numberOfAdults, int numberOfChildren);
 }

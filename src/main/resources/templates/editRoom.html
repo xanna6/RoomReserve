@@ -9,19 +9,24 @@
 
   <div id="header" th:insert="~{schema.html :: header}"></div>
 
-  <div id="content" class="container my-2" align="center">
+  <div id="content" class="container my-2">
 
-    <h3>Edit room</h3>
+    <h3 style="text-align: center">Edit room</h3>
 
-    <form th:action="@{/rooms/edit/{id}(id=${room.id})}" method="post" th:object="${room}">
-      Number of people: <input type="text" th:field="${room.people}" /><br/>
-      Single beds: <input type="text" th:field="${room.singleBed}" /><br/>
-      Double beds: <input type="text" th:field="${room.doubleBed}" /><br/>
-      Price: <input type="text" th:field="${room.price}" /><br/>
-      <div th:if="'edit' == ${mode}">
+    <form th:action="@{/rooms/edit/{id}(id=${room.id})}" method="post" th:object="${room}"
+          style="width:580px; margin: auto;">
+      Number of people: <input type="text" th:field="${room.people}" />
+      <span th:if="${#fields.hasErrors('people')}"  th:errors="*{people}"></span><br/>
+      Single beds: <input type="text" th:field="${room.singleBed}" />
+      <span th:if="${#fields.hasErrors('singleBed')}" th:errors="*{singleBed}"></span><br/>
+      Double beds: <input type="text" th:field="${room.doubleBed}" />
+      <span th:if="${#fields.hasErrors('doubleBed')}" th:errors="*{doubleBed}"></span><br/>
+      Price: <input type="text" th:field="${room.price}" />
+      <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span><br/>
+      <div th:if="'edit' == ${mode}" style="float: right">
         <input type="submit" value="Save" />
       </div>
-      <div th:if="'add' == ${mode}">
+      <div th:if="'add' == ${mode}" style="float: right;">
         <input type="submit" value="Add" th:formaction="@{/rooms/new}">
       </div>
     </form>
